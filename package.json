@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "test": "mocha test/**/*.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,9 +18,13 @@
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "sinon": "^22.1.0",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "chai": "^6.2.2",
+    "mocha": "^11.8.0",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.2.2"
   }
 }
