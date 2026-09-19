@@ -5,7 +5,7 @@ import app from '../src/app.js';
 import { getTokenAdmin, getToken } from './helpers/auth.js';
 import testesDeEntregaTrabalho from './fixtures/entrega-trabalhos.json' with { type: 'json' };
 
-describe('POST /api/auth/login', () => {
+describe('Fluxo de Cadastro de Trabalho por um novo aluno', () => {
     let tokenAdmin;
     let tokenAluno;
 
