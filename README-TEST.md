@@ -56,7 +56,15 @@ ADMIN_SENHA=admin123
 
 O `MONGODB_URI` também pode ser definido diretamente no terminal. A aplicação usa a base padrão `gestao-de-alunos` quando essa variável não está definida, por isso é recomendável informar uma base exclusiva para os testes.
 
-Na primeira execução em uma base vazia, o seed cria o administrador e os dados iniciais usados pela suíte. Os testes também criam registros próprios durante a execução.
+Na primeira execução em uma base vazia, o seed cria o administrador e os dados iniciais usados pela suíte. Os testes também criam registros próprios durante a execução. Como alguns cenários usam dados fixos, a base de testes deve estar limpa antes de uma nova execução completa.
+
+Para limpar somente a base local de testes usando o MongoDB Shell:
+
+```bash
+mongosh mongodb://127.0.0.1:27017/gestao-de-alunos-test --eval "db.dropDatabase()"
+```
+
+Depois de limpar a base, execute novamente `npm test`.
 
 ### 3. Executar os testes
 
@@ -73,7 +81,7 @@ npx mocha test/auth.test.js --exit
 npx mocha test/cadastrar-aluno-entregar-trabalho.test.js --exit
 ```
 
-Os testes usam o `app` diretamente com o Supertest, portanto não é necessário executar `npm start` ou iniciar o servidor HTTP separadamente.
+Os testes usam o `app` diretamente com o Supertest, portanto não é necessário executar `npm start` ou iniciar o servidor HTTP separadamente. Se os testes já tiverem sido executados anteriormente na mesma base, limpe-a antes de repetir a suíte completa.
 
 ## Pipeline do GitHub Actions
 
