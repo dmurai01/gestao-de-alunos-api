@@ -105,5 +105,22 @@ Durante o job, a variável abaixo aponta os testes para uma base isolada do ambi
 MONGODB_URI=mongodb://127.0.0.1:27017/gestao-de-alunos-test
 ```
 
+As credenciais do administrador devem ser cadastradas no GitHub como **Repository secrets**, em
+**Settings > Secrets and variables > Actions > New repository secret**:
+
+- `ADMIN_EMAIL`: e-mail do administrador;
+- `ADMIN_SENHA`: senha do administrador.
+
+O workflow disponibiliza esses secrets para o passo de testes desta forma:
+
+```yaml
+env:
+  MONGODB_URI: mongodb://127.0.0.1:27017/gestao-de-alunos-test
+  ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+  ADMIN_SENHA: ${{ secrets.ADMIN_SENHA }}
+```
+
+Os valores das credenciais não devem ser gravados diretamente no arquivo YAML ou no repositório.
+
 Se qualquer etapa falhar, especialmente a instalação das dependências, a disponibilidade do MongoDB ou algum teste, o job é marcado como falho e o `push` ou `pull request` não passa na validação configurada pelo workflow.
 
